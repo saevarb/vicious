@@ -33,13 +33,13 @@ return helpers.setcall(function ()
     -- Get MEM info
     for line in io.lines("/proc/meminfo") do
         for k, v in string.gmatch(line, "([%a]+):[%s]+([%d]+).+") do
-            if     k == "MemTotal"  then _mem.total = math.floor(v/1024)
-            elseif k == "MemFree"   then _mem.buf.f = math.floor(v/1024)
-            elseif k == "MemAvailable" then _mem.buf.a = math.floor(v/1024)
-            elseif k == "Buffers"   then _mem.buf.b = math.floor(v/1024)
-            elseif k == "Cached"    then _mem.buf.c = math.floor(v/1024)
-            elseif k == "SwapTotal" then _mem.swp.t = math.floor(v/1024)
-            elseif k == "SwapFree"  then _mem.swp.f = math.floor(v/1024)
+            if     k == "MemTotal"  then _mem.total = v/1024/1024
+            elseif k == "MemFree"   then _mem.buf.f = v/1024/1024
+            elseif k == "MemAvailable" then _mem.buf.a = v/1024/1024
+            elseif k == "Buffers"   then _mem.buf.b = v/1024/1024
+            elseif k == "Cached"    then _mem.buf.c = v/1024/1024
+            elseif k == "SwapTotal" then _mem.swp.t = v/1024/1024
+            elseif k == "SwapFree"  then _mem.swp.f = v/1024/1024
             end
         end
     end
